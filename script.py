@@ -47,7 +47,7 @@ def upload_file(file_name: str, s3_prefix: str):
 
 
 def predict():
-    url = generate_presigned_url("pimis-ml", "reports/exports.xlsx")
+    url = generate_presigned_url("pimis-ml", "reports/export.xlsx")
     df = pd.read_excel(url)
     df['Date Created'] = pd.to_datetime(df['Date Created'])
     df = df.sort_values('Date Created')
