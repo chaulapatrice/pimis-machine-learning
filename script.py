@@ -70,15 +70,15 @@ def predict():
 
     actual_prediction.set_index('ds', inplace=True)
     actual_prediction_monthly = actual_prediction.resample('ME').sum()
-    actual_prediction_monthly.to_excel("results.xlsx", sheet_name='Actual Prediction')
+    actual_prediction_monthly.to_excel("actual_prediction.xlsx", sheet_name='Actual Prediction')
 
     df.set_index('ds', inplace=True)
     actual_monthly = df.resample('ME').sum()
-    actual_monthly.to_excel("results.xlsx", sheet_name='Actual')
+    actual_monthly.to_excel("actual.xlsx", sheet_name='Actual')
 
     forecast.set_index('ds', inplace=True)
     forecast_monthly = forecast.resample('ME').sum()
-    forecast_monthly.to_excel("results.xlsx", sheet_name="Forecast")
+    forecast_monthly.to_excel("forecast.xlsx", sheet_name="Forecast")
 
     plt.figure(figsize=(20, 5))
     plt.grid(True)
@@ -92,7 +92,9 @@ def predict():
     plt.savefig("graph.pdf")
 
     upload_file("graph.pdf", "results")
-    upload_file("results.xlsx", "results")
+    upload_file("forecast.xlsx", "results")
+    upload_file("actual.xlsx", "results")
+    upload_file("actual_prediction.xlsx", "results")
 
 
 if __name__ == '__main__':
